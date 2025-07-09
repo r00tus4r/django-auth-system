@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}500 - Server Error{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-7 bg-light border shadow p-5 rounded">
+            <h1 class="text-center text-uppercase mb-5 display-5">500 - Server Error</h1>
+            <p class="text-center">Sorry, there was an error processing your request.</p>
+            <div class="text-center mt-4">
+                <p>Return to <a href="{% url 'dashboard' %}">Dashboard</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
