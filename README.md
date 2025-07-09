@@ -11,6 +11,13 @@ A simple and customizable **Django Authentication System** with features like re
 * Custom forms & views
 * Secure password handling
 
+## 📦 Deployment
+
+This project is deployed using [PythonAnywhere](https://www.pythonanywhere.com/) with static files served via `whitenoise`.
+
+**Live Demo:** [http://djangoauthsys.pythonanywhere.com/](http://djangoauthsys.pythonanywhere.com/)
+
+
 ## 🛠️ Tech Stack
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
