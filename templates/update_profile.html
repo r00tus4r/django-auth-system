@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Update Profile{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-7 bg-light border shadow p-5 rounded">
+            <h1 class="text-center text-uppercase mb-5 display-5">Update Account</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_div }}
+                <button class="btn btn-primary w-100 mt-5" type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

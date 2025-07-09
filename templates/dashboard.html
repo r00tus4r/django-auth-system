@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    <h2 class="mb-5">All Users</h2>
+    {% if users %}
+        <ul class="list-group list-group-flush">
+            {% for user in users %}
+                <li class="list-group-item">
+                    <a href="{% url 'profile' user.id %}">{{ user.username }}</a>
+                    {% if user.first_name or user.last_name %}
+                        <span class="text-muted">({{ user.first_name }} {{ user.last_name }})</span>
+                    {% endif %}
+                    {% if user.email %}
+                        <span class="text-muted"> - {{ user.email }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">No users found.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

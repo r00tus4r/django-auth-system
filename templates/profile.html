@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.username }}{% endblock %}
+{% block content %}
+<h2>Profile for <code>@{{ user.username }}</code></h2>
+{% if user.first_name or user.last_name %}
+    <p class="mb-0"><i class="bi bi-person-circle"></i> {{ user.first_name }} {{ user.last_name }}</p>
+{% endif %}
+{% if user.email %}
+    <p class="mb-0"><i class="bi bi-envelope-fill"></i> {{ user.email }}</p>
+{% endif %}
+<p><i class="bi bi-calendar-fill"></i> Joined on {{ user.date_joined|date:"F j, Y" }}</p>
+<a href="{% url 'update-profile' %}" class="btn btn-primary"><i class="bi bi-pencil-fill"></i> Edit Profile</a>
+<a href="{% url 'delete-account' %}" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Delete Profile</a>
+{% endblock %}
