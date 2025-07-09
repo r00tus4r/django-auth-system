@@ -61,7 +61,7 @@ class CustomUserCreationForm(UserCreationForm):
                 {field.label_tag(attrs={"class": "form-label"})}
                 {field}
                 {''.join([f'<div class="text-danger small">{error}</div>' for error in field.errors])}
-                {f'<div class="form-text">{field.help_text}</div>' if field.help_text else ''}
+                {f'<div class="text-muted"><small>{field.help_text}</small></div>' if field.help_text else ''}
             </div>
             '''
         return mark_safe(output)
@@ -112,7 +112,7 @@ class CustomUserChangeForm(UserChangeForm):
                 {field.label_tag(attrs={"class": "form-label"})}
                 {field}
                 {''.join([f'<div class="text-danger small">{error}</div>' for error in field.errors])}
-                {f'<div class="form-text">{field.help_text}</div>' if field.help_text else ''}
+                {f'<div class="text-muted"><small>{field.help_text}</small></div>' if field.help_text else ''}
             </div>
             '''
         return mark_safe(output)
@@ -151,7 +151,7 @@ class CustomAuthenticationForm(AuthenticationForm):
                 {field.label_tag(attrs={"class": "form-label"})}
                 {field}
                 {''.join([f'<div class="text-danger small">{error}</div>' for error in field.errors])}
-                {f'<div class="form-text">{field.help_text}</div>' if field.help_text else ''}
+                {f'<div class="text-muted"><small>{field.help_text}</small></div>' if field.help_text else ''}
             </div>
             '''
         return mark_safe(output)
