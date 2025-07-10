@@ -1,24 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-{% if request.user.is_authenticated %}
-    <h2 class="mb-5">All Users</h2>
-    {% if users %}
-        <ul class="list-group list-group-flush">
-            {% for user in users %}
-                <li class="list-group-item">
-                    <a href="{% url 'profile' user.id %}">{{ user.username }}</a>
-                    {% if user.first_name or user.last_name %}
-                        <span class="text-muted">({{ user.first_name }} {{ user.last_name }})</span>
-                    {% endif %}
-                    {% if user.email %}
-                        <span class="text-muted"> - {{ user.email }}</span>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+    {% if request.user.is_authenticated %}
+        <h2 class="mb-5">All Users</h2>
+        {% if users %}
+            <ul class="list-group list-group-flush">
+                {% for user in users %}
+                    <li class="list-group-item">
+                        <a href="{% url 'profile' user.id %}">{{ user.username }}</a>
+                        {% if user.first_name or user.last_name %}
+                            <span class="text-muted">({{ user.first_name }} {{ user.last_name }})</span>
+                        {% endif %}
+                        {% if user.email %}
+                            <span class="text-muted"> - {{ user.email }}</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">No users found.</p>
+        {% endif %}
     {% else %}
-        <p class="text-muted">No users found.</p>
+        <!-- welcome -->
+        <div class="bg-light p-5 rounded border shadow" role="alert">
+            <h1 class="display-3 mb-5">Welcome to the Dashboard!</h1>
+            <p class="">Please log in to view user details.</p>
+            <hr>
+            <p class="mb-0">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+            <p class="mb-0">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+        </div>
     {% endif %}
-{% endif %}
 {% endblock %}
