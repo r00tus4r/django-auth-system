@@ -32,7 +32,6 @@ This project is deployed using [PythonAnywhere](https://www.pythonanywhere.com/)
 ## 📁 Project Structure
 
 ```
-
 django-auth-system/
 ├── accounts/                # User management app
 │   ├── admin.py
@@ -77,7 +76,7 @@ django-auth-system/
    ```bash
    git clone https://github.com/r00tus4r/django-auth-system.git
    cd django-auth-system
-````
+   ```
 
 2. **Create virtual environment**
 
