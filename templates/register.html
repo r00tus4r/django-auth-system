@@ -6,7 +6,7 @@
             <h1 class="text-center text-uppercase mb-5 display-5">Create Account</h1>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form.as_div }}
                 <button class="btn btn-primary w-100 mt-5" type="submit">Create</button>
             </form>
             <div class="text-center mt-4">

@@ -52,7 +52,7 @@ class CustomUserCreationForm(UserCreationForm):
             raise forms.ValidationError(
                 mark_safe('This username is already taken. Please choose a different one.'))
         return username
-    
+
     def as_div(self):
         output = ""
         for field in self:
@@ -69,10 +69,13 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'email', 'first_name', 'last_name']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        if 'password' in self.fields:
+            del self.fields['password']
 
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['username'].widget.attrs['placeholder'] = 'Enter your username'
@@ -96,6 +99,26 @@ class CustomUserChangeForm(UserChangeForm):
             'invalid': 'Enter a valid email address.'
         }
         self.fields['email'].required = True
+
+        self.fields['first_name'].widget.attrs['class'] = 'form-control'
+        self.fields['first_name'].widget.attrs['placeholder'] = 'Enter your first name'
+        self.fields['first_name'].label = 'First Name'
+        self.fields['first_name'].label_suffix = ' *'
+        self.fields['first_name'].help_text = 'Optional. Enter your first name.'
+        self.fields['first_name'].error_messages = {
+            'invalid': 'Enter a valid first name.'
+        }
+        self.fields['first_name'].required = False
+
+        self.fields['last_name'].widget.attrs['class'] = 'form-control'
+        self.fields['last_name'].widget.attrs['placeholder'] = 'Enter your last name'
+        self.fields['last_name'].label = 'Last Name'
+        self.fields['last_name'].label_suffix = ' *'
+        self.fields['last_name'].help_text = 'Optional. Enter your last name.'
+        self.fields['last_name'].error_messages = {
+            'invalid': 'Enter a valid last name.'
+        }
+        self.fields['last_name'].required = False
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
