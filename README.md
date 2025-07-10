@@ -1,22 +1,24 @@
 # Django Auth System
 
-A simple and customizable **Django Authentication System** with features like registration, login, logout, profile update, and account deletion. Designed for learning purposes and quick integration into any Django-based web project.
+A full-featured user authentication system built with Django. It includes registration, login/logout, password change/reset, profile update, and account deletion with a responsive Bootstrap UI.
 
 ## 🌟 Features
 
-* User registration with validation
-* Login and logout system
-* Profile update & deletion
-* Clean Bootstrap-based UI
-* Custom forms & views
-* Secure password handling
+- User registration and login
+- Password hashing and validation
+- Profile management
+- Password change and reset
+- Account deletion
+- Custom Django forms and templates
+- Flash messages and error handling
+- 404 / 500 custom error pages
+- Deployed with PythonAnywhere
 
 ## 📦 Deployment
 
 This project is deployed using [PythonAnywhere](https://www.pythonanywhere.com/) with static files served via `whitenoise`.
 
 **Live Demo:** [http://djangoauthsys.pythonanywhere.com/](http://djangoauthsys.pythonanywhere.com/)
-
 
 ## 🛠️ Tech Stack
 
@@ -30,6 +32,7 @@ This project is deployed using [PythonAnywhere](https://www.pythonanywhere.com/)
 ## 📁 Project Structure
 
 ```
+
 django-auth-system/
 ├── accounts/                # User management app
 │   ├── admin.py
@@ -39,27 +42,33 @@ django-auth-system/
 │   ├── urls.py
 │   └── views.py
 ├── config/                  # Django settings and core configuration
+│   ├── asgi.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
-├── static/                  # Static files (logo, favicon, css/js if any)
+├── db.sqlite3               # SQLite DB (for dev)
+├── LICENSE
+├── manage.py
+├── README.md
+├── requirements.txt         # Dependencies
+├── TODO.md                  # Remaining tasks & ideas
+├── static/                  # Static files (logo, favicon, etc.)
 │   ├── favicon.ico
 │   └── logo.png
 ├── templates/               # HTML templates
+│   ├── 404.html
+│   ├── 500.html
 │   ├── base.html
-│   ├── navbar.html
-│   ├── register.html
-│   ├── login.html
+│   ├── change\_password.html
 │   ├── dashboard.html
+│   ├── delete\_account.html
+│   ├── login.html
+│   ├── navbar.html
 │   ├── profile.html
-│   ├── update_profile.html
-│   └── delete_account.html
-├── db.sqlite3               # SQLite DB (for dev)
-├── manage.py                # Django CLI
-├── requirements.txt         # Dependencies
-├── LICENSE
-└── README.md
-```
+│   ├── register.html
+│   └── update\_profile.html
+
+````
 
 ## 🚀 Getting Started
 
@@ -68,7 +77,7 @@ django-auth-system/
    ```bash
    git clone https://github.com/r00tus4r/django-auth-system.git
    cd django-auth-system
-   ```
+````
 
 2. **Create virtual environment**
 
@@ -83,7 +92,7 @@ django-auth-system/
    pip install -r requirements.txt
    ```
 
-4. **Run the project**
+4. **Run migrations and start server**
 
    ```bash
    python manage.py migrate
@@ -91,8 +100,6 @@ django-auth-system/
    ```
 
 Then open your browser: `http://127.0.0.1:8000/`
-
----
 
 ## 👤 Author
 
