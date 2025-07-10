@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
+from django.contrib.auth.forms import PasswordChangeForm
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -165,6 +166,44 @@ class CustomAuthenticationForm(AuthenticationForm):
             'invalid': 'Enter a valid password.'
         }
         self.fields['password'].required = True
+
+    def as_div(self):
+        output = ""
+        for field in self:
+            output += f'''
+            <div class="mb-3 form-group">
+                {field.label_tag(attrs={"class": "form-label"})}
+                {field}
+                {''.join([f'<div class="text-danger small">{error}</div>' for error in field.errors])}
+                {f'<div class="text-muted"><small>{field.help_text}</small></div>' if field.help_text else ''}
+            </div>
+            '''
+        return mark_safe(output)
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['old_password'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Enter your current password'
+        })
+        self.fields['old_password'].label = 'Current Password'
+        self.fields['old_password'].label_suffix = ' *'
+
+        self.fields['new_password1'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Enter a new password'
+        })
+        self.fields['new_password1'].label = 'New Password'
+        self.fields['new_password1'].label_suffix = ' *'
+
+        self.fields['new_password2'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Confirm your new password'
+        })
+        self.fields['new_password2'].label = 'Confirm New Password'
+        self.fields['new_password2'].label_suffix = ' *'
 
     def as_div(self):
         output = ""
